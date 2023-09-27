@@ -569,6 +569,10 @@ The parameters should be checked first!!
 -   执行完函数之后从栈中取出各种数据。拿到函数返回值（如果有），继续执行原来的代码。
 -   程序执行的代价就是各种数据的出入栈的花费，如果函数非常复杂那么代价可以忽略不计，如果是简单的函数又频繁调用代价就大了，这时候可以设为内联函数。
 
+### References
+
+> an alias to an already-existing variable/object
+
 # 内联函数示例
 
 ![](https://img-blog.csdnimg.cn/7dd57ab76608444e997e983a9e852e32.png)
