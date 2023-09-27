@@ -506,17 +506,7 @@ int foo(const char *p) {
 }
 ```
 
-## 
-
-# 一个小技巧
-
-这是一个打印数组的宏：
-
-![](https://img-blog.csdnimg.cn/2b38aba2194746ad8abfd81bf3970851.png)
-
-宏里面的参数加上括号是为了更加安全，因为此宏的参数可以是一个表达式的的结果，表达式的优先级可能会对宏的内容造成影响。 
-
-# size\_t
+### size\_t
 
 一个无符号整型，表示当前系统内存中可以存储的最大对象的大小。
 
@@ -527,20 +517,32 @@ int foo(const char *p) {
 -   堆内存区：动态申请的内存会存放此处，
 -   栈内存区：临时、局部变量存放在此区。
 
-# void\* malloc( size\_t size )
+![image-20230927193133141](C:/Users/Lee/AppData/Roaming/Typora/typora-user-images/image-20230927193133141.png)
+
+### void\* malloc( size\_t size )
 
 -   单位是字节。
 -   分配的内存是未初始化的，原来里面装着什么内容分配后不变。
 -   存在内存对齐机制，比如：int \* p1 = (int\*) malloc (4);只想分配4字节，但是不同操作系统分配的是不同的，有的会最小分配4字节，有的会最小分配16字节。
 -   **当程序结束后操作系统会把分配给该程序的所有内存回收。**
 
-申请1T内存：
+### Memory Leak
 
-```cpp
-    for(int i = 0;i < 1024;++i)    {        int * p = (int*)malloc(1024 * 1024 * 1024);    }
+```c++
+p = (int *) malloc(4 * sizeof(int));
+// ...
+p = (int *) malloc(8 * sizeof(int));
+free(p);
+
+void foo() {
+    int *p = (int *) malloc(sizeof(int));
+    return;
+}
 ```
 
-# new
+### new
+
+> Operator new is similar with malloc() but with more features
 
 ![](https://img-blog.csdnimg.cn/86665d7b1b75466bad63add2b23d3643.png)
 
@@ -549,6 +551,8 @@ int foo(const char *p) {
 # delete 
 
 ![](https://img-blog.csdnimg.cn/afa3d4825eef446992d0eca12691a53a.png)
+
+养成用 `delete []` 的习惯是比较安全的
 
 # 函数是怎么调用的
 
