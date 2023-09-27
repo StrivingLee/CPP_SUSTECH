@@ -573,6 +573,11 @@ The parameters should be checked first!!
 
 > an alias to an already-existing variable/object
 
+- A reference **must** be initialized after its declaration.
+- References are much safer.
+- Affecting the original object, to avoid this, add `const` modifier.
+- Higher efficiency without data copying.
+
 # 内联函数示例
 
 ![](https://img-blog.csdnimg.cn/7dd57ab76608444e997e983a9e852e32.png)
