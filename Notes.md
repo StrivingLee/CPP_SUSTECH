@@ -548,13 +548,21 @@ void foo() {
 
 ![](https://img-blog.csdnimg.cn/f521d7f8997144cbb78e017389db47f5.png)
 
-# delete 
+### delete
 
 ![](https://img-blog.csdnimg.cn/afa3d4825eef446992d0eca12691a53a.png)
 
 养成用 `delete []` 的习惯是比较安全的
 
-# 函数是怎么调用的
+### Functions
+
+The parameters should be checked first!!
+
+好的风格是先声明，否则要不断调整函数的顺序
+
+一般把函数的声明放在头文件里
+
+### 函数是怎么调用的
 
 -   应用程序执行的时候实际上是二进制指令一条条地往CPU里面搬，每一段代码都是一条条指令。
 -   当碰到函数时，因为函数的指令不一定和当前执行的指令放在一起的，那么在执行函数时会跳到其他位置去执行，在跳之前一般要保存当前的状态，即各种数据入栈。
