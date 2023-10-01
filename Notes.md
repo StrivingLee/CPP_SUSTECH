@@ -578,57 +578,117 @@ The parameters should be checked first!!
 - Affecting the original object, to avoid this, add `const` modifier.
 - Higher efficiency without data copying.
 
-# 内联函数示例
+### If we have a lot to return
 
-![](https://img-blog.csdnimg.cn/7dd57ab76608444e997e983a9e852e32.png)
+- such as matrix addition function
+- A suggested prototype
+  - To use references to avoid data copying
+  - To use const parameters to avoid input data being modified
+  - To use non-const reference parameters to receive the output
+
+### Inline functions
+
+- inline 只是对编译器的一种建议
 
 ![](https://img-blog.csdnimg.cn/64119e05099c413a98f5785b0c1d1abd.png)
 
-# 重载函数
+### Default arguments
+
+```c++
+float norm(float x, float y, float z = 0);
+// z is parameter, 0 is argument
+```
+
+只能从尾部开始，只能定义一次，效果可以叠加
+
+### Function overloading
 
 返回值不参与比较，两个参数列表相同但返回值不同的函数被认为是同一个函数。
 
-# 函数模板
+### Function templates
 
 编译器不会为模板函数生成机器指令，因为不知道具体的类型，只有模板实例化时才会生成机器指令。
 
-函数模板实例化的几种形式：
+函数模板实例化：
 
 ```cpp
-template<typename T>T sum(T x, T y){    cout << "输入类型是：" << typeid(T).name() << endl;    return x + y;} int main(int argc, char *argv[]){    //实例化的几种形式    double s1 = sum<double>(3.5, 5.9);    char s2 = sum<>('c', 'd');    int s3 = sum(8, 9);}
+template<typename T>
+T sum(T x, T y) {
+    cout << "The input type is " << typeid(T).name() << endl;
+    return x + y;
+}
+
+// instantiates explictly
+template double sum<double>(double, double);
+template char sum<>(char, char);
+template int sum(int, int);
 ```
 
-![](https://img-blog.csdnimg.cn/3f7caa9727424fcbb1e1253bb352097e.png)
+### Specialization
 
-# 模板函数的特例化
-
-上面的代码，如果有一个类型：
+如对于结构类型：
 
 ```cpp
-struct Point{    int x;    int y;};
+struct Point {
+    int x;
+    int y;
+};
 ```
 
-执行：
+直接执行会报错，需要针对此类型进行特例化：
 
 ```cpp
-    Point s1 = sum<Point>(Point{1,2}, Point{3,4});
+template<>
+Point sum<Point>(Point pt1, Point pt2) {
+    cout << "The input type is " << typeid(pt1).name() << endl;
+    Point pt;
+    pt.x = pt1.x + pt2.x;
+    pt.y = pt1.y + pt2.y;
+    return pt;
+}
 ```
 
-编译会报错，因为这个类型没有定义加操作。这时候可以针对此类型特例化实现 sum() 操作：
+注意此处必须加 `<>`
 
-```cpp
-template<typename T>T sum(T x, T y){    cout << "输入类型是：" << typeid(T).name() << endl;    return x + y;} struct Point{    int x;    int y;}; template<>Point sum<Point>(Point pt1, Point pt2){    cout << "输入类型是：" << typeid(pt1).name() << endl;    Point pt;    pt.x = pt1.x + pt2.x;    pt.y = pt1.y + pt2.y;    return pt;} int main(int argc, char *argv[]){    Point s1 = sum<Point>(Point{1,2}, Point{3,4});}
+### Function pointers
+
+指向的是指令区的数据，指向指令的地址
+
+有些时候需要用到代表某一类函数的函数指针，例如标准库容器的自定义操作
+
+还有一种是把函数作为参数传入另一个函数作为**回调函数**，如 `qsort` 的调用
+
+```c++
+float norm_l1(float x, float y);
+float norm_l2(float x, float y);
+float (*norm_ptr)(float x, float y);
+norm_ptr = norm_l1; // pointing
+norm_ptr = &norm_l2;
+float len1 = norm_ptr(-3.0f, 4.0f); // invoking
+float len1 = (*norm_ptr)(-3.0f, 4.0f);
 ```
 
-![](https://img-blog.csdnimg.cn/67d740f8261a455aa17f910195581671.png)
+### Function references
 
-# 函数指针
+```c++
+float norm_l1(float x, float y);
+float norm_l2(float x, float y);
+float (&norm_ref)(float x, float y) = norm_l1;
+```
 
-指向的是指令区的数据，指向指令的地址。
+当然函数引用越少越好
 
-# 编程基本原则
+### Recursive functions
 
-“Simple is Beautiful”。代码应该尽可能短、尽可能简洁。
+// todo
+
+我自认为学会了就跳过了
+
+### Chapter8
+
+// todo
+
+与代码优化有关，我先跳过了
 
 # 代码优化常用策略
 
@@ -687,10 +747,6 @@ str3 先执行了默认构造函数，即先构造了一个长度为64的字符�
 
 -   自定义拷贝构造函数、自定义拷贝运算符重载使指针指向自己申请的内存。
 -   浅拷贝，使用引用计数。
-
-# 老师金句之二
-
-> 当你做一件事情的时候感觉很笨、很啰嗦的时候，大概率你的方法错了。
 
 # 编程技巧
 
