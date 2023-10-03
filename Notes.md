@@ -2,20 +2,6 @@
 
 ## 大纲
 
-1、C++的基础知识（第一章到第四章）
-第一章、编译与预处理，C++环境的介绍
-答：主要讲授了C++以及C语言的常用的基础语法，比如，编译链接，预处理宏，输入输出函数，
-
-第二章、C++的数据类型以及算术运算
-整形类型，浮点类型，算数运算，类型转换，
-
-第三章、条件分支与for循环结构
-条件分支结构（if），循环结构（while，do…whike,for …,go ,switch,break,continue等等），
-
-第四章、数组
-
-数组（一维数组，定长数组，变长数组，多维数组，常量数组等等，字符串string），结构体(struct)【将不同的数据类型统一起来，用法基本上同后面学到的类】，联合体（union）【共享同一块地址】以及枚举（enum）[替换常量],
-
 第五章、指针与内存管理
 指针：1、存的是地址；&是取地址，*是取内容这三点是原则。
 2、指针的指针。
@@ -58,11 +44,7 @@
 6、const以及static之间的区别？前者主要强调不变，后者主要强调不需要实例化，声明就会进入内存；静态函数里面不能调用非静态的成员函数或者成员变量，不然就会报错。
 7、
 
-第十章、运算符重载
-1、运算符重载的主要目的是可以让语言更加高级；同时运算符重载可以让程序更加简单；难就难在运算符重载声明并不是那么容易的一件事情。
-2、友元函数：函数的朋友，可以不受限类的约束，因为它不是类的成员；
-3、类型转换：在运算符重载的过程中，通常会遇到各种类型的转换，注意最好使用显式转换，不建议使用隐式转换。
-4、自增与自减运算符的重载： 可以让代码更加地简洁；
+
 
 第十一章、一些默认的操作
 1、默认构造函数：
@@ -104,24 +86,12 @@
 1、OPENBLAS项目创始人介绍如何进行代码优化：1、局部性原理2、GEMM
 2、OPENCV中国区域负责人：Vadim Pisarevsky与于教授的对答环节：
 
-总结：
-1、C++之所以性能高的原因是：
-A、相较于其他的语言，比如JAVA，C#，这种语言本身很多都没有进行检查，他们认为写程序的都是具有很高的程序素养的人，所以避免检查就会让程序运行更加快捷；
-B、C++以及C语言更加偏向底层，偏向计算机组成原理，计算机体系结构，这样就会更加快速。
 
-2、于老师这门课对我有什么启发？
-答：这门课涉及到的东西很多：包括C++，C语言，liunx常用的操作命令，G++,GCC等进行编译实现。camke,make,makefile,cmakelist等等知识，以及图像处理算法介绍，OpenCV内部的函数以及优化的地方。授学方式不再强调于课本本身，主要还是传授C++问题本质，而且编程是一门需要动手的技能，学完之后要立马手动实操，这很关键。
 
-3、这门课对我印象最为深刻的地方是什么？
-答：按照于老师所提的这门课主要是想讲清楚指针以及内存管理这两块，因为指针和内存管理是C++学习过程中最难度过的两道难关，这门课确实讲得很深刻也很简单。对我影响最大的地方就是A、一个代码的优化，以前总是觉得将代码写出来就可以了，现在想来很大程度上是要想明白，怎样才能写好一个好代码，这就是很多程序员做了很多年都不曾去思考的问题，就是为了实现功能，将代码冗余地进行组装。里面提供了一些如何让代码加速的TIPS，很是让我感同身受。B、其次就是这门语言是基于linux以及VScode这两种环境我都不是很熟，而这两种环境又是当今使用最为频繁的两个方向，这也是值得我深思的一个方向，因为市面上用的更多的还是windows以及vs 等等
+# Chapter1 Introduction and Background
 
-4、这门课有哪些不足呢？
-答：A、GUI其实也是挺重要的，这门课没有过多地提及，GUI很多都需要经验来实现，没有太多的技术含量，但是确实也是很重要的一个方面。
-B、实验部分确实还不够，C++以及任何一门语言的学习都需要进行大量的训练与动手能力，这些PPT里面确实是有很多的代码实现，代码编辑的规则，老师都认为是默认就是知道的。
-
-# 笔记
-
-## Chapter 1
+> C++的基础知识
+> 主要讲授了C++以及C语言的常用的基础语法，比如，编译链接，预处理宏，输入输出函数
 
 ### g++
 
@@ -189,6 +159,11 @@ int mul(int a, int b) {
 
 好处：分开编译，**节约编译时间**
 
+**引号和尖括号引用的区别**
+
+- 尖括号：编译器从编译器指定的 include 路径寻找头文件
+- 引号：从指定的和当前路径寻找
+
 ### Debug
 
 错误三大类：
@@ -199,17 +174,7 @@ int mul(int a, int b) {
 
 ### Preprocessor and Macros
 
-预处理指令是以“#”开头的指令，只能占一行。
-
-换行需要转义符
-
-```C++
-define, undef, include, if, ifdef, ifndef, else, elif, endif, line, error, pragma
-```
-
-编译之前先由预处理器处理。
-
-宏是文本替换。
+预处理指令是以“#”开头的指令，只能占一行，换行需要转义符
 
 ### Simple Input and Output
 
@@ -230,11 +195,14 @@ std::istream cin;
 
 
 
-## Chapter 2
+# Chapter2 Data Types and Arithmetic Operations
+
+> C++的数据类型以及算术运算
+> 整形类型，浮点类型，算数运算，类型转换
 
 ### Integer numbers
 
-Please initialize variables EXPLICITLY!
+Please initialize variables **EXPLICITLY**!
 
 新的初始化方式
 
@@ -279,7 +247,7 @@ typedef char bool;
 #include <stdbool.h>
 ```
 
-### size_t
+### $\texttt{size\_t}$
 
 `sizeof` 的返回值类型
 
@@ -334,8 +302,6 @@ int main(int argc, char *argv[]) {
 
 double 类型的数据操作比 float 更慢。
 
-### Arithmetic operators
-
 ### constant numbers
 
 ```c++
@@ -351,7 +317,7 @@ double 类型的数据操作比 float 更慢。
 6.02e23L; // long double
 ```
 
-### auto
+### $\texttt{auto}$
 
 `auto` is placeholder type specifier
 
@@ -373,11 +339,13 @@ int num1 = (int)'C'; // C-style
 int num2 = int('C'); // function style
 ```
 
-### Divisions
-
 ```c++
 float f = 17 / 5; // f will be 3.f
 ```
+
+
+
+# Chapter3 Statements
 
 ### Assign statement
 
@@ -387,15 +355,21 @@ if(int * p = get()){}
 
 赋值表达式的值是等号右边的内容。
 
-### goto
+### $\texttt{goto}$
 
 在函数的末尾进行错误处理、清理等操作。当程序出错时跳转到错误处理的相关代码，其他情况不建议使用 goto 语句。
 
-### switch
+### $\texttt{switch}$
 
 更像 goto 语句，所以要注意写 break
 
-### Arrays
+
+
+# Chapter4 Arrays
+
+> 数组
+>
+> 数组（一维数组，定长数组，变长数组，多维数组，常量数组等等，字符串string），结构体(struct)【将不同的数据类型统一起来，用法基本上同后面学到的类】，联合体（union）【共享同一块地址】以及枚举（enum）[替换常量],
 
 ### variable-length arrays
 
@@ -427,7 +401,7 @@ char *strcpy(char* dst, const char* src);
 
 如果溢出了也会继续复制，所以有了更安全的 `strncpy`
 
-### string class
+### $\texttt{string}$ class
 
 ```cpp
 std::string str1 = "Hello";
@@ -447,13 +421,13 @@ std::u32string // C++11
 
 直接用方括号下标访问不会有异常，at 方法越界会有异常
 
-### struct
+### $\texttt{struct}$
 
 ```cpp
 struct Point point1 = {.type=TYPE_INT8, .data8={-2,3,4}};
 ```
 
-### enum
+### $\texttt{enum}$
 
 ```cpp
 enum color {WHITE, BLACK, RED, GREEN, BLUE, YELLOW, NUM_COLORS};
@@ -464,7 +438,7 @@ int color_index = pen_color;
 color_index += 1;
 ```
 
-### typedef
+### $\texttt{typedef}$
 
 ```cpp
 typedef unsigned char vec3b[3];
@@ -506,7 +480,7 @@ int foo(const char *p) {
 }
 ```
 
-### size\_t
+### $\texttt{size\_t}$
 
 一个无符号整型，表示当前系统内存中可以存储的最大对象的大小。
 
@@ -519,7 +493,7 @@ int foo(const char *p) {
 
 ![image-20230927193133141](C:/Users/Lee/AppData/Roaming/Typora/typora-user-images/image-20230927193133141.png)
 
-### void\* malloc( size\_t size )
+### $\texttt{void* malloc( size\_t size )}$
 
 -   单位是字节。
 -   分配的内存是未初始化的，原来里面装着什么内容分配后不变。
@@ -540,7 +514,7 @@ void foo() {
 }
 ```
 
-### new
+### $\texttt{new}$
 
 > Operator new is similar with malloc() but with more features
 
@@ -684,13 +658,9 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 我自认为学会了就跳过了
 
-### Chapter8
 
-// todo
 
-与代码优化有关，我先跳过了
-
-# 代码优化常用策略
+# Chapter8 Optimizations
 
 1.  优化算法，从算法的时间复杂度、空间复杂度方面考虑优化算法。
 2.  现在的编译器非常强大，把代码写得简洁以便编译器可以优化。
@@ -698,6 +668,86 @@ float (&norm_ref)(float x, float y) = norm_l1;
 4.  避免拷贝大的对象。
 5.  尽可能不要再循环里面打印内容。
 6.  查表法。比如 sin()、cos() 这些计算很费时间，可以计算出其常用的值存到数组，可以大大提高效率。处理复杂操作可以考虑使用。
+
+
+
+# Chapter9 Classes and Objects
+
+操作结构时要非常小心数据取值和地址越界问题
+
+### Access Specifier
+
+成员默认是 `private`
+
+### Member Functions
+
+成员函数可以在类里也可以在类外。可以仅在类中放函数声明
+
+```c++
+// member-function.cpp
+```
+
+类中定义的函数默认是 `inline` 函数
+
+建议：
+
+- 简单且适合内联的函数放在类内
+- 操作复杂的函数建议放到类的外部
+
+### File Structure
+
+将类的声明放到头文件
+
+```c++
+// Chapter9/files
+```
+
+### Constructors
+
+```c++
+// constructor.cpp
+```
+
+### Destructors
+
+```c++
+// destructors.cpp
+```
+
+- 加波浪线 `~`
+- 不允许重载
+- 无参数无返回值
+
+### $\texttt{this}$ Pointer
+
+表示当前对象
+
+> 类似 Python 的 self
+
+### $\texttt{const}$ and $\texttt{static}$ Members
+
+- $\texttt{const}$ Variables
+
+```c++
+const int * p_int;
+int const * p_int;
+// 相同，指针指向的内容不能通过指针修改
+int * const p_int;
+// 指针一定指向某个不可修改的地址
+```
+
+- $\texttt{static}$ Members
+
+
+
+# Chapter10 Operator Overloading
+
+> 第十章、运算符重载
+>
+> 1、运算符重载的主要目的是可以让语言更加高级；同时运算符重载可以让程序更加简单；难就难在运算符重载声明并不是那么容易的一件事情。
+> 2、友元函数：函数的朋友，可以不受限类的约束，因为它不是类的成员；
+> 3、类型转换：在运算符重载的过程中，通常会遇到各种类型的转换，注意最好使用显式转换，不建议使用隐式转换。
+> 4、自增与自减运算符的重载： 可以让代码更加地简洁；
 
 # 运算符重载
 
