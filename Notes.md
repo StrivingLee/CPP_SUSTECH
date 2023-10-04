@@ -1,50 +1,4 @@
-南科大于仕琪C++
-
-## 大纲
-
-第五章、指针与内存管理
-指针：1、存的是地址；&是取地址，*是取内容这三点是原则。
-2、指针的指针。
-3、常数指针（要注意区分）
-4、指针数组 数组名相当于首地址，也就类似于指针。
-
-动态内存管理：
-1、申请了内存，一定要记得释放或者中途改变，内存释放不了就会出现内存泄漏的问题；
-2、delete[] 释放内存
-3、还可以使用动态内存管理的指针，这是C++最新的发展方向，但不一定是最好	的选择，因为还有很多的不确定性。
-
-第六章、函数
-1、函数的定义
-2、函数的返回值（本质就是值复制）
-3、函数的参数（深拷贝与浅拷贝 也就是对应大的值传递还是地址传递地问题。最终在实际中的体现就是深拷贝在函数里面的修改会对外面的参数有影响。）
-4、函数的声明与使用（通常函数编辑的时候，首先在入口处要对参数进行各种检查，这样可以避免出现BUG）
-5、引用：相比较于指针，引用一定要初始化，会更加的安全。
-6、内联函数，就是以空间换时间的作用；
-
-第七章、函数的扩展：默认参数问题以及函数模板等等
-1、默认参数都是从后面开始写的；
-2、函数的重载：函数名相同，签名不同的函数，主要的作用就是在调用的时候能根据参数的传入不同，调用不同的函数体。
-3、函数模板：本质上就是泛型，类似于C#中的泛型，在定义的时候是不会生成代码，在实例化的时候才生成真正的代码。 多态的本质就是延迟定义，这样可以让程序变得更加灵活。
-4、函数指针： 就是指向函数的指针。 类似于C#中的委托，这样做到深层次可以实现事件进行异步通讯。
-5、函数引用：
-6、递归函数：优点就是可以让复杂程序变得简单，比如树的遍历等等；缺点就是占据内存高，计算复杂度高，同时耗时且理解困难。
-
-第八章、Arm下的C++和C编程
-1、平台不一样
-2、如何让程序加速？ 本质就是三点：短，简单，高效；
-主要包括以下几点：A、算法合适；B、代码简洁；C、内存优化；D、避免内存复制；E、循环里面不要使用printf、cout F、可以使用查表法；G、SIMD,OPENMP自带的加速机制；
-3、如何避免内存的复制？
-
-第九章、类与对象
-1、类：类成员变量以及类成员方法；
-2、类的设计：头文件（.hpp文件，就是申明函数等等），函数具体实现（.cpp）,主函数实现（main.cpp实现）
-3、cmake以及Makefile的实现
-4、构造函数以及析构函数（默认的：主要就是为了释放内存：delete[]）
-5、this 指针：就是指定当前的对象
-6、const以及static之间的区别？前者主要强调不变，后者主要强调不需要实例化，声明就会进入内存；静态函数里面不能调用非静态的成员函数或者成员变量，不然就会报错。
-7、
-
-
+# Temp
 
 第十一章、一些默认的操作
 1、默认构造函数：
@@ -88,10 +42,11 @@
 
 
 
+
+
 # Chapter1 Introduction and Background
 
-> C++的基础知识
-> 主要讲授了C++以及C语言的常用的基础语法，比如，编译链接，预处理宏，输入输出函数
+> 第一章、基础知识
 
 ### g++
 
@@ -107,7 +62,7 @@ g++ hello.cpp
 g++ hello.cpp --std=c++11
 ```
 
-3、编译默认生成文件名为：a.out，自定义生成文件名：
+3、自定义生成文件名：
 
 ```bash
 g++ hello.cpp --std=c++11 -o hello
@@ -153,7 +108,7 @@ int mul(int a, int b) {
 }
 ```
 
-![](https://img-blog.csdnimg.cn/256a8be4aa4840ddac233d0fcabe54bd.png)
+![compile-and-link](Images/compile-and-link.png)
 
 注：g++ 的 -c 选项表示只编译不链接。
 
@@ -197,7 +152,8 @@ std::istream cin;
 
 # Chapter2 Data Types and Arithmetic Operations
 
-> C++的数据类型以及算术运算
+> 第二章、数据类型及算术运算
+>
 > 整形类型，浮点类型，算数运算，类型转换
 
 ### Integer numbers
@@ -345,7 +301,11 @@ float f = 17 / 5; // f will be 3.f
 
 
 
+
+
 # Chapter3 Statements
+
+> 第三章、语句
 
 ### Assign statement
 
@@ -362,6 +322,8 @@ if(int * p = get()){}
 ### $\texttt{switch}$
 
 更像 goto 语句，所以要注意写 break
+
+
 
 
 
@@ -385,7 +347,7 @@ C 和 C++ 禁止数组首地址的赋值，这样两个数组地址指向同一�
 
 在 C/C++ 中数组不是对象，这点不同于 Java
 
-### const arrays
+### $\texttt{const}$ arrays
 
 常常用作函数传参
 
@@ -409,7 +371,7 @@ std::string str2 = "Lee";
 std::string result = str1 + ", " + str2;
 ```
 
-### Different types of strings
+### Different types of $\texttt{string}$
 
 ```cpp
 std::string
@@ -446,6 +408,14 @@ typedef unsigned char vec3b[3];
 unsigned char color[3];
 vec3b color = {255, 0, 255};
 ```
+
+
+
+
+
+# Chapter5 Pointers and Memory Management
+
+> 第五章、指针与内存管理
 
 ### constant pointers
 
@@ -484,14 +454,14 @@ int foo(const char *p) {
 
 一个无符号整型，表示当前系统内存中可以存储的最大对象的大小。
 
-# 程序内存的类型
+### Memory Types
 
 -   代码区：存放程序的执行指令，试图对这块进行写操作会被系统 kill。
 -   静态变量区：初始化的、未初始化的分开存放。
 -   堆内存区：动态申请的内存会存放此处，
 -   栈内存区：临时、局部变量存放在此区。
 
-![image-20230927193133141](C:/Users/Lee/AppData/Roaming/Typora/typora-user-images/image-20230927193133141.png)
+<img src="Images/memory-types.png" alt="memory-types" style="zoom:50%;" />
 
 ### $\texttt{void* malloc( size\_t size )}$
 
@@ -518,17 +488,81 @@ void foo() {
 
 > Operator new is similar with malloc() but with more features
 
-![](https://img-blog.csdnimg.cn/86665d7b1b75466bad63add2b23d3643.png)
+```c++
+//allocate an int, default initializer (do nothing)
+int * p1 = new int; 
+//allocate an int, initialized to 0
+int * p2 =  new int();
+//allocate an int, initialized to 5
+int * p3 =  new int(5); 
+//allocate an int, initialized to 0
+int * p4 =  new int{};//C++11    
+//allocate an int, initialized to 5
+int * p5 =  new int {5};//C++11
 
-![](https://img-blog.csdnimg.cn/f521d7f8997144cbb78e017389db47f5.png)
+//allocate a Student object, default initializer
+Student * ps1 = new Student;
+//allocate a Student object, initialize the members
+Student * ps2 = new Student {"Yu", 2020, 1}; //C++11
 
-### delete
+//allocate 16 int, default initializer (do nothing) 
+int * pa1 = new int[16];
+//allocate 16 int, zero initialized 
+int * pa2 = new int[16]();
+//allocate 16 int, zero initialized 
+int * pa3 = new int[16]{}; //C++11
+//allocate 16 int, the first 3 element are initialized to 1,2,3, the rest 0
+int * pa4 = new int[16]{1,2,3}; //C++11
 
-![](https://img-blog.csdnimg.cn/afa3d4825eef446992d0eca12691a53a.png)
+//allocate memory for 16 Student objects, default initializer
+Student * psa1 = new Student[16];
+//allocate memory for 16 Student objects, the first two are explicitly initialized
+Student * psa2 = new Student[16]{{"Li", 2000,1}, {"Yu", 2001,1}}; //C++11
+```
+
+### $\texttt{delete}$
+
+```c++
+//deallocate memory
+delete p1;
+//deallocate memory
+delete ps1;
+
+//deallocate the memory of the array
+delete pa1;
+//deallocate the memory of the array
+delete []pa2;
+
+//deallocate the memory of the array, and call the destructor of the first element
+delete psa1;
+//deallocate the memory of the array, and call the destructors of all the elements
+delete []psa2;
+```
 
 养成用 `delete []` 的习惯是比较安全的
 
-### Functions
+
+
+
+
+# Chapter6-7 Functions
+
+> 第六章、函数
+>
+> 1、函数的定义
+> 2、函数的返回值（本质就是值复制）
+> 3、函数的参数（深拷贝与浅拷贝 也就是对应大的值传递还是地址传递地问题。最终在实际中的体现就是深拷贝在函数里面的修改会对外面的参数有影响。）
+> 4、函数的声明与使用（通常函数编辑的时候，首先在入口处要对参数进行各种检查，这样可以避免出现BUG）
+> 5、引用：相比较于指针，引用一定要初始化，会更加的安全。
+> 6、内联函数，就是以空间换时间的作用；
+>
+> 第七章、函数的扩展：默认参数问题以及函数模板等等
+> 1、默认参数都是从后面开始写的；
+> 2、函数的重载：函数名相同，签名不同的函数，主要的作用就是在调用的时候能根据参数的传入不同，调用不同的函数体。
+> 3、函数模板：本质上就是泛型，类似于C#中的泛型，在定义的时候是不会生成代码，在实例化的时候才生成真正的代码。 多态的本质就是延迟定义，这样可以让程序变得更加灵活。
+> 4、函数指针： 就是指向函数的指针。 类似于C#中的委托，这样做到深层次可以实现事件进行异步通讯。
+> 5、函数引用：
+> 6、递归函数：优点就是可以让复杂程序变得简单，比如树的遍历等等；缺点就是占据内存高，计算复杂度高，同时耗时且理解困难。
 
 The parameters should be checked first!!
 
@@ -536,7 +570,7 @@ The parameters should be checked first!!
 
 一般把函数的声明放在头文件里
 
-### 函数是怎么调用的
+### Function calling
 
 -   应用程序执行的时候实际上是二进制指令一条条地往CPU里面搬，每一段代码都是一条条指令。
 -   当碰到函数时，因为函数的指令不一定和当前执行的指令放在一起的，那么在执行函数时会跳到其他位置去执行，在跳之前一般要保存当前的状态，即各种数据入栈。
@@ -563,8 +597,23 @@ The parameters should be checked first!!
 ### Inline functions
 
 - inline 只是对编译器的一种建议
-
-![](https://img-blog.csdnimg.cn/64119e05099c413a98f5785b0c1d1abd.png)
+- 内联后的代码大概如下：
+  ```c++
+  int main() {
+      int num1 = 20;
+      int num2 = 30;
+      int maxv =
+      { if (num1 > num2)
+          return num1;
+        else
+          return num2; }
+      maxv =
+      { if (numn > maxv)
+          return numn;
+        else
+          return maxv; }
+  }
+  ```
 
 ### Default arguments
 
@@ -654,13 +703,18 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 ### Recursive functions
 
-// todo
 
-我自认为学会了就跳过了
 
 
 
 # Chapter8 Optimizations
+
+>第八章、Arm下的C++和C编程
+>
+>1、平台不一样
+>2、如何让程序加速？ 本质就是三点：短，简单，高效；
+>主要包括以下几点：A、算法合适；B、代码简洁；C、内存优化；D、避免内存复制；E、循环里面不要使用printf、cout F、可以使用查表法；G、SIMD,OPENMP自带的加速机制；
+>3、如何避免内存的复制？
 
 1.  优化算法，从算法的时间复杂度、空间复杂度方面考虑优化算法。
 2.  现在的编译器非常强大，把代码写得简洁以便编译器可以优化。
@@ -671,7 +725,17 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 
 
+
+
 # Chapter9 Classes and Objects
+
+>第九章、类与对象
+>
+>1、类：类成员变量以及类成员方法；
+>2、文件结构设计：头文件（.hpp），函数具体实现（.cpp），主函数实现（main.cpp）
+>3、构造函数以及析构函数
+>4、this 指针：指定当前的对象
+>5、const 成员与 static 成员
 
 操作结构时要非常小心数据取值和地址越界问题
 
@@ -740,26 +804,37 @@ int * const p_int;
 
 
 
+
+
 # Chapter10 Operator Overloading
 
 > 第十章、运算符重载
 >
-> 1、运算符重载的主要目的是可以让语言更加高级；同时运算符重载可以让程序更加简单；难就难在运算符重载声明并不是那么容易的一件事情。
+> 1、运算符重载的主要目的是简化程序
 > 2、友元函数：函数的朋友，可以不受限类的约束，因为它不是类的成员；
 > 3、类型转换：在运算符重载的过程中，通常会遇到各种类型的转换，注意最好使用显式转换，不建议使用隐式转换。
 > 4、自增与自减运算符的重载： 可以让代码更加地简洁；
 
-# 运算符重载
+### $\texttt{friend}$ Functions
 
-运算符重载可以实现很多方便的操作，比如一个类型转成int：
+- 在类中声明
+- 有权限访问类的所有成员
+- **不是**类的成员，所以在类外定义的时候不加 `classname::`
+- **可以用来重定义输入输出操作，类似 Java 中的 `toString`**
 
-```cpp
-struct Point{    int x;    int y;     operator int()const    {        return x + y;    }}; int main(int argc, char *argv[]){    Point p1{22,33};    int x = p1;    int x2 = static_cast<int>(p1);    qDebug()<<x<<x2;//55 55     }
+```c++
+// main.cpp time.hpp
 ```
 
-类似的还可以转成float、bool等。
+### User-defined Type Conversion
 
-反过来 int 转 Point 可以定义一个int类型的构造函数来实现。
+一行定义并初始化会调用构造函数，而先定义不初始化后面再赋值会调用赋值运算符
+
+### Increment and Decrement Operators
+
+![operators-can-be-overloaded](Images/operators-can-be-overloaded.png)
+
+
 
 # 一段关于动态内存的险恶代码
 
