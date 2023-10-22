@@ -1,54 +1,8 @@
-# Temp
-
-第十一章、一些默认的操作
-1、默认构造函数：
-2、动态内存的例子；
-3、内存泄漏的解法；
-4、软拷贝
-5、智能指针可以自动释放内存； （只管申请，不管释放：本质就是模板类，就是一个对象，在析构函数中根据引用次数减少到指定值时（比如到0时）就会自动删除delete[]从而释放内存。）
-
-第十二章、改善你的源代码
-1、一些建议：A、使用size_t代替int;B、矩阵拷贝不适用双层循环，使用内存可能更好；C、使用一维数组，而不是使用二维数组。D、不要使用太多的循环结构；E、多对输入参数进行检查，这样可以避免更多的bug.F、将代码写得更加具有可移植性，这样可以方便拓展；G、文件命名规则；H、代码优化无止境。
-2、头文件里面应用了单例模式；
-3、代码最好要做到高内聚低耦合。
-4、派生类：子类继承父类的所有特性，先执行父类的构造函数，析构函数则是相反。
-5、访问权限的控制：private,public,protected具有不同的访问权限与范围。
-6、虚函数：虚函数就是在父类中进行申明，在子类中进行实现与重写。这样可以实现多态，延迟定义： 在C#中，虚函数是一种很好的抽象，著名的抽象工厂，抽象方法以及抽象类也是类似于这种思想实现的。 虚函数的本质就是动态绑定，非虚函数就是静态绑定。
-7、析构函数一定是虚函数。
-8、静态与动态的内存申请：
-9、opencv中的实例；
-
-第十三章、类模板
-1、类模板是最近C++标准推出的功能，主要也就是泛型在类上面的实现。
-2、可以更加灵活地调用类，泛型（模板）的出现主要就是延迟创建，让使用变得更加方便；
-
-3、模板还可以相互继承；
-4、C++中有很多的标准类模板；
-
-第十四章、错误处理机制
-1、cin ,cout,cerr等不同的信息输出到多管道中；
-2、assert 是一个宏，不是一个标准；
-3、exception异常，通常使用try……catch对不同的异常进行捕获。
-4、还有更多的异常捕获机制，就是对应于不同的异常进行捕获，然后进行相应的处理。
-
-第十五章、拓展的C++知识
-1、友元类：友元函数不是成员函数。友元类可以调用基类的私有成员；
-2、Nested types嵌套：
-3、RTTI和不同的数据类型转换：（记住一点那就是最好使用显式转换，不然出现信息都是都是容易造成bug的问题的出现。）
-4、
-第十六章、企业合作项目的开启
-1、OPENBLAS项目创始人介绍如何进行代码优化：1、局部性原理2、GEMM
-2、OPENCV中国区域负责人：Vadim Pisarevsky与于教授的对答环节：
-
-
-
-
-
 # Chapter1 Introduction and Background
 
 > 第一章、基础知识
 
-### g++
+## g++
 
 1、编译 hello.cpp 文件：
 
@@ -74,7 +28,7 @@ g++ hello.cpp --std=c++11 -o hello
 ./hello
 ```
 
-### Compile and Link
+## Compile and Link
 
 函数声明一般放在 `*.hpp` 文件中
 
@@ -119,7 +73,7 @@ int mul(int a, int b) {
 - 尖括号：编译器从编译器指定的 include 路径寻找头文件
 - 引号：从指定的和当前路径寻找
 
-### Debug
+## Debug
 
 错误三大类：
 
@@ -127,11 +81,11 @@ int mul(int a, int b) {
 - 链接错误：错误提示一般与 symbol 有关，顺藤摸瓜查这个符号
 - 运行错误：编译链接正常，运行时报错
 
-### Preprocessor and Macros
+## Preprocessor and Macros
 
 预处理指令是以“#”开头的指令，只能占一行，换行需要转义符
 
-### Simple Input and Output
+## Simple Input and Output
 
 ```c++
 std::ostream cout;
@@ -140,7 +94,7 @@ std::istream cin;
 
 `<<` 是运算符，采用运算符重载定义，返回值依然是 `cout`，故可以链式调用
 
-### Arguments
+## Arguments
 
 ```c++
 // arguments.cpp
@@ -156,7 +110,7 @@ std::istream cin;
 >
 > 整形类型，浮点类型，算数运算，类型转换
 
-### Integer numbers
+## Integer Numbers
 
 Please initialize variables **EXPLICITLY**!
 
@@ -167,7 +121,7 @@ int num (10);
 int num {10};
 ```
 
-### Data width and more integer types
+## Data Width and More Integer Types
 
 C 和 C++ 标准并未固定数据位宽
 
@@ -193,7 +147,7 @@ bool b = -256; // 非0值均为1 unrecommended conversion
 bool b = (-256 != 0); // better choice
 ```
 
-### Boolean in C
+## Boolean in C
 
 ```c
 typedef char bool;
@@ -203,7 +157,7 @@ typedef char bool;
 #include <stdbool.h>
 ```
 
-### $\texttt{size\_t}$
+## $\texttt{size\_t}$
 
 `sizeof` 的返回值类型
 
@@ -211,7 +165,7 @@ typedef char bool;
 
 自减时不会减到负数，循环时不能自减，否则会无限循环
 
-### Fixed width integer types (since C++11)
+## Fixed Width Integer Types (since C++11)
 
 ```c++
 // Defined in <cstdint>
@@ -237,7 +191,7 @@ INT64_MAX;
 ...
 ```
 
-### Floating point numbers
+## Floating Point Numbers
 
 ```cpp
 #include <iostream>
@@ -258,7 +212,7 @@ int main(int argc, char *argv[]) {
 
 double 类型的数据操作比 float 更慢。
 
-### constant numbers
+## Constant Numbers
 
 ```c++
 95; // decimal
@@ -273,7 +227,7 @@ double 类型的数据操作比 float 更慢。
 6.02e23L; // long double
 ```
 
-### $\texttt{auto}$
+## $\texttt{auto}$
 
 `auto` is placeholder type specifier
 
@@ -288,7 +242,7 @@ auto a = 2;
 a = 2.3; // will a be converted to double again? No
 ```
 
-### Conversion
+## Conversion
 
 ```c++
 int num1 = (int)'C'; // C-style
@@ -307,7 +261,7 @@ float f = 17 / 5; // f will be 3.f
 
 > 第三章、语句
 
-### Assign statement
+## Assign Statement
 
 ```cpp
 if(int * p = get()){}
@@ -315,11 +269,11 @@ if(int * p = get()){}
 
 赋值表达式的值是等号右边的内容。
 
-### $\texttt{goto}$
+## $\texttt{goto}$
 
 在函数的末尾进行错误处理、清理等操作。当程序出错时跳转到错误处理的相关代码，其他情况不建议使用 goto 语句。
 
-### $\texttt{switch}$
+## $\texttt{switch}$
 
 更像 goto 语句，所以要注意写 break
 
@@ -333,7 +287,7 @@ if(int * p = get()){}
 >
 > 数组（一维数组，定长数组，变长数组，多维数组，常量数组等等，字符串string），结构体(struct)【将不同的数据类型统一起来，用法基本上同后面学到的类】，联合体（union）【共享同一块地址】以及枚举（enum）[替换常量],
 
-### variable-length arrays
+## Variable-length Arrays
 
 运行时才能确定数组的大小，如果用常量开，编译时便可确定
 
@@ -347,7 +301,7 @@ C 和 C++ 禁止数组首地址的赋值，这样两个数组地址指向同一�
 
 在 C/C++ 中数组不是对象，这点不同于 Java
 
-### $\texttt{const}$ arrays
+## $\texttt{const}$ arrays
 
 常常用作函数传参
 
@@ -363,7 +317,7 @@ char *strcpy(char* dst, const char* src);
 
 如果溢出了也会继续复制，所以有了更安全的 `strncpy`
 
-### $\texttt{string}$ class
+## $\texttt{string}$ class
 
 ```cpp
 std::string str1 = "Hello";
@@ -371,7 +325,7 @@ std::string str2 = "Lee";
 std::string result = str1 + ", " + str2;
 ```
 
-### Different types of $\texttt{string}$
+## Different Types of $\texttt{string}$
 
 ```cpp
 std::string
@@ -383,13 +337,13 @@ std::u32string // C++11
 
 直接用方括号下标访问不会有异常，at 方法越界会有异常
 
-### $\texttt{struct}$
+## $\texttt{struct}$
 
 ```cpp
 struct Point point1 = {.type=TYPE_INT8, .data8={-2,3,4}};
 ```
 
-### $\texttt{enum}$
+## $\texttt{enum}$
 
 ```cpp
 enum color {WHITE, BLACK, RED, GREEN, BLUE, YELLOW, NUM_COLORS};
@@ -400,7 +354,7 @@ int color_index = pen_color;
 color_index += 1;
 ```
 
-### $\texttt{typedef}$
+## $\texttt{typedef}$
 
 ```cpp
 typedef unsigned char vec3b[3];
@@ -417,7 +371,7 @@ vec3b color = {255, 0, 255};
 
 > 第五章、指针与内存管理
 
-### constant pointers
+## Constant Pointers
 
 指针指向的内容不能通过 `*` 取内容来修改
 
@@ -450,27 +404,27 @@ int foo(const char *p) {
 }
 ```
 
-### $\texttt{size\_t}$
+## $\texttt{size\_t}$
 
 一个无符号整型，表示当前系统内存中可以存储的最大对象的大小。
 
-### Memory Types
+## Memory Types
 
--   代码区：存放程序的执行指令，试图对这块进行写操作会被系统 kill。
+-   代码区：存放程序的执行指令，试图写入的操作会被系统 kill。
 -   静态变量区：初始化的、未初始化的分开存放。
 -   堆内存区：动态申请的内存会存放此处，
 -   栈内存区：临时、局部变量存放在此区。
 
 <img src="Images/memory-types.png" alt="memory-types" style="zoom:50%;" />
 
-### $\texttt{void* malloc( size\_t size )}$
+## $\texttt{void* malloc( size\_t size )}$
 
 -   单位是字节。
--   分配的内存是未初始化的，原来里面装着什么内容分配后不变。
+-   分配的内存是未初始化的，不改变原有存储内容。
 -   存在内存对齐机制，比如：int \* p1 = (int\*) malloc (4);只想分配4字节，但是不同操作系统分配的是不同的，有的会最小分配4字节，有的会最小分配16字节。
 -   **当程序结束后操作系统会把分配给该程序的所有内存回收。**
 
-### Memory Leak
+## Memory Leak
 
 ```c++
 p = (int *) malloc(4 * sizeof(int));
@@ -484,7 +438,7 @@ void foo() {
 }
 ```
 
-### $\texttt{new}$
+## $\texttt{new}$
 
 > Operator new is similar with malloc() but with more features
 
@@ -520,7 +474,7 @@ Student * psa1 = new Student[16];
 Student * psa2 = new Student[16]{{"Li", 2000,1}, {"Yu", 2001,1}}; //C++11
 ```
 
-### $\texttt{delete}$
+## $\texttt{delete}$
 
 ```c++
 //deallocate memory
@@ -570,14 +524,14 @@ The parameters should be checked first!!
 
 一般把函数的声明放在头文件里
 
-### Function calling
+## Function Calling
 
 -   应用程序执行的时候实际上是二进制指令一条条地往CPU里面搬，每一段代码都是一条条指令。
 -   当碰到函数时，因为函数的指令不一定和当前执行的指令放在一起的，那么在执行函数时会跳到其他位置去执行，在跳之前一般要保存当前的状态，即各种数据入栈。
 -   执行完函数之后从栈中取出各种数据。拿到函数返回值（如果有），继续执行原来的代码。
 -   程序执行的代价就是各种数据的出入栈的花费，如果函数非常复杂那么代价可以忽略不计，如果是简单的函数又频繁调用代价就大了，这时候可以设为内联函数。
 
-### References
+## References
 
 > an alias to an already-existing variable/object
 
@@ -586,7 +540,7 @@ The parameters should be checked first!!
 - Affecting the original object, to avoid this, add `const` modifier.
 - Higher efficiency without data copying.
 
-### If we have a lot to return
+## Multiple Return Values
 
 - such as matrix addition function
 - A suggested prototype
@@ -594,7 +548,7 @@ The parameters should be checked first!!
   - To use const parameters to avoid input data being modified
   - To use non-const reference parameters to receive the output
 
-### Inline functions
+## Inline Functions
 
 - inline 只是对编译器的一种建议
 - 内联后的代码大概如下：
@@ -615,7 +569,7 @@ The parameters should be checked first!!
   }
   ```
 
-### Default arguments
+## Default Arguments
 
 ```c++
 float norm(float x, float y, float z = 0);
@@ -624,11 +578,11 @@ float norm(float x, float y, float z = 0);
 
 只能从尾部开始，只能定义一次，效果可以叠加
 
-### Function overloading
+## Function Overloading
 
 返回值不参与比较，两个参数列表相同但返回值不同的函数被认为是同一个函数。
 
-### Function templates
+## Function Templates
 
 编译器不会为模板函数生成机器指令，因为不知道具体的类型，只有模板实例化时才会生成机器指令。
 
@@ -647,7 +601,9 @@ template char sum<>(char, char);
 template int sum(int, int);
 ```
 
-### Specialization
+## Specialization
+
+特化
 
 如对于结构类型：
 
@@ -673,7 +629,7 @@ Point sum<Point>(Point pt1, Point pt2) {
 
 注意此处必须加 `<>`
 
-### Function pointers
+## Function Pointers
 
 指向的是指令区的数据，指向指令的地址
 
@@ -691,7 +647,7 @@ float len1 = norm_ptr(-3.0f, 4.0f); // invoking
 float len1 = (*norm_ptr)(-3.0f, 4.0f);
 ```
 
-### Function references
+## Function References
 
 ```c++
 float norm_l1(float x, float y);
@@ -701,7 +657,7 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 当然函数引用越少越好
 
-### Recursive functions
+## Recursive Functions
 
 
 
@@ -727,7 +683,7 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 
 
-# Chapter9 Classes and Objects
+# Chapter9 Basics of Classes
 
 >第九章、类与对象
 >
@@ -739,11 +695,11 @@ float (&norm_ref)(float x, float y) = norm_l1;
 
 操作结构时要非常小心数据取值和地址越界问题
 
-### Access Specifier
+## Access Specifier
 
 成员默认是 `private`
 
-### Member Functions
+## Member Functions
 
 成员函数可以在类里也可以在类外。可以仅在类中放函数声明
 
@@ -758,7 +714,7 @@ float (&norm_ref)(float x, float y) = norm_l1;
 - 简单且适合内联的函数放在类内
 - 操作复杂的函数建议放到类的外部
 
-### File Structure
+## File Structure
 
 将类的声明放到头文件
 
@@ -766,31 +722,31 @@ float (&norm_ref)(float x, float y) = norm_l1;
 // Chapter9/files
 ```
 
-### Constructors
+## Constructors
 
 ```c++
 // constructor.cpp
 ```
 
-### Destructors
+## Destructors
 
 ```c++
-// destructors.cpp
+// destructor.cpp
 ```
 
 - 加波浪线 `~`
 - 不允许重载
 - 无参数无返回值
 
-### $\texttt{this}$ Pointer
+## $\texttt{this}$ pointer
 
 表示当前对象
 
 > 类似 Python 的 self
 
-### $\texttt{const}$ and $\texttt{static}$ Members
+### $\texttt{const}$ and $\texttt{static}$ members
 
-- $\texttt{const}$ Variables
+- $\texttt{const}$ variables
 
 ```c++
 const int * p_int;
@@ -800,13 +756,13 @@ int * const p_int;
 // 指针一定指向某个不可修改的地址
 ```
 
-- $\texttt{static}$ Members
+- $\texttt{static}$ members
 
 
 
 
 
-# Chapter10 Operator Overloading
+# Chapter10 Advances in Classes
 
 > 第十章、运算符重载
 >
@@ -815,7 +771,7 @@ int * const p_int;
 > 3、类型转换：在运算符重载的过程中，通常会遇到各种类型的转换，注意最好使用显式转换，不建议使用隐式转换。
 > 4、自增与自减运算符的重载： 可以让代码更加地简洁；
 
-### $\texttt{friend}$ Functions
+## $\texttt{friend}$ functions
 
 - 在类中声明
 - 有权限访问类的所有成员
@@ -826,11 +782,11 @@ int * const p_int;
 // main.cpp time.hpp
 ```
 
-### User-defined Type Conversion
+## User-defined Type Conversion
 
 一行定义并初始化会调用构造函数，而先定义不初始化后面再赋值会调用赋值运算符
 
-### Increment and Decrement Operators
+## Increment and Decrement Operators
 
 ![operators-can-be-overloaded](Images/operators-can-be-overloaded.png)
 
@@ -838,29 +794,36 @@ int * const p_int;
 
 
 
-# Chapter11 Background Knowledge
+# Chapter11 Dynamic Memory Management in Classes
 
-### Default Operations
+> 第十一章、类的动态内存操作
+> 1、默认构造函数：
+> 2、动态内存的例子；
+> 3、内存泄漏的解法；
+> 4、软拷贝
+> 5、智能指针可以自动释放内存； （只管申请，不管释放：本质就是模板类，在析构函数中根据引用次数减少到指定值时（比如到0时）就会自动删除delete[]从而释放内存。）
+
+## Default Operations
 
 - 默认构造函数
 - 隐式定义的析构函数
 - 默认拷贝构造函数
 - 默认拷贝赋值运算符
 
-### An Example with Dynamic Memory
+## An Example with Dynamic Memory
 
-### Hard Copy
+## Hard Copy
 
 -   自定义拷贝构造函数
 -   自定义拷贝运算符重载使指针指向自己申请的内存。
 
-### Soft Copy
+## Soft Copy
 
 > Hard copy 的时间和空间代价较高
 
 -   浅拷贝，使用引用计数。
 
-### Smart Pointers
+## Smart Pointers
 
 - $\texttt{std::shared\_ptr}$
 
@@ -874,16 +837,27 @@ int * const p_int;
 
 
 
-# Chapter12 Improvements
+# Chapter12 Class Inheritance
 
-### Suggestions to Project3 2021
+> 第十二章、改善你的源代码
+> 1、一些建议：A、使用size_t代替int;B、矩阵拷贝不适用双层循环，使用内存可能更好；C、使用一维数组，而不是使用二维数组。D、不要使用太多的循环结构；E、多对输入参数进行检查，这样可以避免更多的bug.F、将代码写得更加具有可移植性，这样可以方便拓展；G、文件命名规则；H、代码优化无止境。
+> 2、头文件里面应用了单例模式；
+> 3、代码最好要做到高内聚低耦合。
+> 4、派生类：子类继承父类的所有特性，先执行父类的构造函数，析构函数则是相反。
+> 5、访问权限的控制：private,public,protected具有不同的访问权限与范围。
+> 6、虚函数：虚函数就是在父类中进行申明，在子类中进行实现与重写。这样可以实现多态，延迟定义： 在C#中，虚函数是一种很好的抽象，著名的抽象工厂，抽象方法以及抽象类也是类似于这种思想实现的。 虚函数的本质就是动态绑定，非虚函数就是静态绑定。
+> 7、析构函数一定是虚函数。
+> 8、静态与动态的内存申请：
+> 9、opencv中的实例；
+
+## Suggestions to Project3 2021
 
 - 用 $\texttt{size\_t}$ 表达行数和列数
 - 用 $\texttt{memcpy}$ 完成矩阵的拷贝
 - 数据检查是减少程序调试时间最重要的一点
 - **做Project一定要作为一种艺术**
 
-### Reference Implementation
+## Reference Implementation
 
 - 第二次申请失败的可能性较高：多次申请内存可能导致泄露
 - 不能第二次申请失败就直接返回，需要把第一次申请的内存释放掉
@@ -892,7 +866,7 @@ int * const p_int;
 - 在写代码时多写 debug 信息，产品交付时要少，否则容易被攻击者猜测实现方案
 - 不要依赖编译器的优化，自己能做就尽量做掉
 
-### Derived Classes
+## Derived Classes
 
 ```c++
 class Base {
@@ -921,7 +895,7 @@ public:
 2.  基类中的 protected 数据：以 public、protected 方式继承，该数据在子类还是 protected 的；以private 方式继承，该数据在子类中是不可直接访问的（可以通过父类间接访问）。
 3.  基类中的 public 数据：以 public 方式继承，该数据在子类是 public 的，以 protected 方式继承，该数据在子类中是 protected 的，以 private 方式继承，该数据在子类中是不可直接访问的。
 
-### Virtual Functions
+## Virtual Functions
 
 ```cpp
 // virtual.cpp
@@ -938,61 +912,202 @@ public:
 
 析构函数一定是虚函数，否则调用析构函数时只会调用父类的析构函数。
 
+## Inheritance and Dynamic Memory Allocation
+
+如果基类使用了动态内存分配，并且重写了拷贝构造函数和赋值运算符
+
+- 子类不使用动态内存分配，无需特殊操作
+- 子类使用动态内存分配，需要重写拷贝构造函数和赋值运算符
 
 
 
 
-# Chapter13 Class Template
 
-# 模板的无类型参数
+# Chapter13 Class Templates and std Library
+
+> 第十三章、类模板和标准库
+> 1、类模板是最近C++标准推出的功能，主要也就是泛型在类上面的实现。
+> 2、可以更加灵活地调用类，泛型（模板）的出现主要就是延迟创建，让使用变得更加方便；
+>
+> 3、模板还可以相互继承；
+> 4、C++中有很多的标准类模板；
+
+## Review: Function Templates
+
+是一个空壳子，编译器对空壳子不做任何事情。只有在实例化以后才会做事
+
+Function Templates：空壳子
+
+Template Functions：函数模板初始化后的具体函数
+
+`= delete` 表示不调用默认生成的函数
+
+## Template non-type Parameters
 
 ```cpp
-template<typename T, size_t rows, size_t cols>class Mat{    T data[rows][cols];  public:    Mat(){}    T getElement(size_t r, size_t c);    bool setElement(size_t r, size_t c, T value);};
+template<typename T, size_t rows, size_t cols>
+class Mat {
+    T data[rows][cols];
+  public:
+    Mat(){}
+    T getElement(size_t r, size_t c);
+    bool setElement(size_t r, size_t c, T value);
+};
 ```
 
-上面的代码 rows、cols 在编译的时候就确定了：
+`rows`、`cols` 在编译的时候就确定了：
 
 ```cpp
-    Mat<int, 3, 3> vec;
+Mat<int, 3, 3> vec;
 ```
 
-# 异常处理
+## Class Template Specialization
 
-函数层层调用，最离层的函数抛出异常，如果外层的函数不捕获异常，那么异常会层层往外扔直到主函数，如果到最后异常没有被捕获那么程序会被kill。
+我非要用 `bool` 类型实例化对操作内容为完整字节的模板类
 
-```cpp
-float ratio(float a, float b) {    if (a < 0)        throw 1;    if (b < 0)        throw 2;    if (fabs(a + b) < FLT_EPSILON)        throw "The sum of the two arguments is close to zero.";     return (a - b) / (a + b);} float ratio_wrapper(float a, float b){    try{        return ratio(a, b);    }    catch(int eid)    {        if (eid == 1)            std::cerr << "Call ratio() failed: the 1st argument should be positive." << std::endl;        else if (eid == 2)            std::cerr << "Call ratio() failed: the 2nd argument should be positive." << std::endl;        else            std::cerr << "Call ratio() failed: unrecognized error code." << std::endl;    }    return 0;} int main(){    float x = 0.f;    float y = 0.f;    float z = 0.f;     std::cout << "Please input two numbers <q to quit>:";    while (std::cin >> x >> y)    {        try{            z = ratio_wrapper(x,y);            std::cout << "ratio(" << x << ", " << y<< ") = " << z << std::endl;        }        catch(const char * msg)        {            std::cerr << "Call ratio() failed: " << msg << std::endl;            std::cerr << "I give you another chance." << std::endl;        }         std::cout << "Please input two numbers <q to quit>:";    }    std::cout << "Bye!" << std::endl;    return 0;}
+```c++
+// specialization.cpp
 ```
 
-匹配任何异常：
+## $\texttt{std}$ classes
 
-```cpp
-int main(){    runSomething1();    try    {        runSomething2();    }    runSomeOthers();    catch(...)    {         std::cerr << "Unrecognized Exception" << std::endl;    }    return 0;}
+- $\texttt{std::string}$
+- $\texttt{std::array}$
+- $\texttt{vector}$
+- $\texttt{list}$
+- $\texttt{set}$
+- $\texttt{map}$
+- $\texttt{stack}$
+
+
+
+
+
+# Chapter14 Error Handling
+
+> 第十四章、错误处理机制
+> 1、cin ,cout,cerr等不同的信息输出到多管道中；
+> 2、assert 是一个宏，不是一个标准；
+> 3、exception异常，通常使用try……catch对不同的异常进行捕获。
+> 4、还有更多的异常捕获机制，就是对应于不同的异常进行捕获，然后进行相应的处理。
+
+## Standard Output Stream and Standard Error Stream
+
+在输出很多的时候可以通过管道重定向到文件，不重定向都会输出到控制台
+
+一些操作：
+
+## assert
+
+$\texttt{assert}$ 是一个像函数的宏定义，定义在 $\texttt{<assert.h>}$ 和 $\texttt{<cassert>}$ 头文件中
+
+条件不满足会做相应的处理，并调用 $\texttt{abort()}$ 函数终止程序
+
+如果在产品发布时想去掉 assert 信息，可以在文件中定义 `NDEBUG` 或者在编译时定义一个宏
+
+```shell
+g++ assert.cpp -DNDEBUG
+```
+
+## Exceptions
+
+几种可能的处理方式：
+
+- 直接 kill 程序
+- 用返回值表示成功与否，缺点是需要引入额外的参数
+- 抛出异常
+
+$\texttt{throw}$ 应该会跳过后续的执行语句
+
+函数层层调用，最内层的函数抛出异常，如果外层的函数不捕获异常，那么异常会层层往外扔直到主函数，如果到最后异常没有被捕获那么程序会被kill。
+
+## Catch-all Handler
+
+```c++
+catch(...) // 这里就是...
 ```
 
 三个点表示匹配任何异常，即任何扔到主函数的异常都被捕获，可防止程序被kill。
 
-当new申请内存失败时，默认会抛出异常。
+## Exceptions and Inheritance
 
-```cpp
-int main(){    int * p;        try {        p = new int[10];    }    catch (std::bad_alloc & ba)//处理抛出的异常    {        qDebug() << ba.what();    }        //使用std::nothrow将在new申请内存失败后不抛出内存且将p置为nullptr    p = new(std::nothrow) int[10];    if(p)    {    }    return 0;}
+```c++
+// derived.cpp
 ```
 
-# 友元类
+## $\texttt{std::exception}$
+
+是标准库定义的标准异常类，可以重写 $\texttt{std::exception::what()}$ 方法返回一个字符串
+
+当new申请内存失败时，默认会抛出异常。
+
+## Exception Specifications and $\texttt{noexcept}$
+
+如果抛出异常编译期就会出错
+
+## $\texttt{nothrow new}$
+
+$\texttt{std::nothrow}$
+
+
+
+
+
+# Chapter15 Nested Classes and RTTI
+
+> 第十五章、拓展的C++知识
+> 1、友元类：友元函数不是成员函数。友元类可以调用基类的私有成员；
+> 2、Nested types嵌套：
+> 3、RTTI和不同的数据类型转换：（记住一点那就是最好使用显式转换，不然出现信息都是都是容易造成bug的问题的出现。）
+> 4、
+
+## $\texttt{friend}$ Classes
 
 友元类可以访问类的私有成员。
 
 ```cpp
-#include <iostream>using namespace std; class Sniper{private:    int bullets;public:    Sniper(int bullets = 0): bullets(bullets){}    friend class Supplier;}; class Supplier{    int storage;public:    Supplier(int storage = 1000): storage(storage){}    bool provide(Sniper & sniper)    {        // bullets is a private member        if (sniper.bullets < 20) //no enough bullets        {            if (this->storage > 100 )            {                sniper.bullets += 100;                this->storage -= 100;            }            else if(this->storage > 0)            {                sniper.bullets += this->storage;                this->storage = 0;            }            else                return false;        }        cout << "sniper has " << sniper.bullets << " bullets now." << endl;        return true;    }}; int main(){    Sniper sniper(2);    Supplier supplier(2000);    supplier.provide(sniper);    return 0;}
+// friend.cpp
 ```
+
+## $\texttt{friend}$ Member Functions
 
 限制友元类只有一部分函数可以访问类的私有成员：
 
 ```cpp
-#include <iostream>using namespace std; class Supplier;class Sniper; class Supplier{    int storage;public:    Supplier(int storage = 1000): storage(storage){}    bool provide(Sniper & sniper);}; class Sniper{private:    int bullets;public:    Sniper(int bullets = 0): bullets(bullets){}    friend bool Supplier::provide(Sniper &);}; bool Supplier::provide(Sniper & sniper){    // bullets is a private member    if (sniper.bullets < 20) //no enough bullets    {        if (this->storage > 100 )        {            sniper.bullets += 100;            this->storage -= 100;        }        else if(this->storage > 0)        {            sniper.bullets += this->storage;            this->storage = 0;        }        else            return false;    }    cout << "sniper has " << sniper.bullets << " bullets now." << endl;    return true;} int main(){    Sniper sniper(2);    Supplier supplier(2000);    supplier.provide(sniper);    return 0;}
+
 ```
 
-# vadim pisarevsky 大佬提到的几个关于c++的建议
+编译时如果遇到“死锁”，考虑将类的声明和类的成员函数声明先写出，后续补充其定义。
+
+## Nested Types
+
+## RTTI and Type Cast Operators
+
+RTTI: Runtime Type Identification
+
+- $\texttt{dynamic\_cast}$：将**多态类型**进行转换
+- $\texttt{typeid}$：返回类型 id
+- $\texttt{type\_info}$：返回的对象
+
+```c++
+// typeid.cpp
+```
+
+## More Type Cast Operators
+
+- $\texttt{const\_cast}$
+- $\texttt{static\_cast}$
+- $\texttt{reinterpret\_cast}$
+
+
+
+# Appendix
+
+> 附录
+> 1、OPENBLAS项目创始人介绍如何进行代码优化：1、局部性原理2、GEMM
+> 2、OPENCV中国区域负责人：Vadim Pisarevsky与于教授的对答环节：
+
+## Interview with Vadim Pisarevsky on class $\texttt{cv::Mat}$ in OpenCV
 
 1.  （长久来看）建议关注算法、概念、技术，而不是特定的特性或者编程语言本身。
 2.  不要尝试把你学到的花哨功能全部用到开发上，因为过一段时间你可以就都不懂你的代码了。
